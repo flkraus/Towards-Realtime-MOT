@@ -137,7 +137,7 @@ class YOLOLayer(nn.Module):
         
 
     def forward(self, p_cat,  img_size, targets=None, classifier=None, test_emb=False):
-        p, p_emb = p_cat[:, :24, ...], p_cat[:, 24:, ...]
+        p, p_emb = p_cat[:, :(self.nA * 6), ...], p_cat[:, (self.nA * 6):, ...]
         nB, nGh, nGw = p.shape[0], p.shape[-2], p.shape[-1]
 
         if self.img_size != img_size:
